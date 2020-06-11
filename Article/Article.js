@@ -112,3 +112,61 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+window.addEventListener('load', (e)=>{ 
+
+  const articles = document.querySelector(".articles");
+ 
+  data.forEach(info => {
+    articles.appendChild(addContent(info));
+  });
+
+  function addContent(post) {
+    //new elements  
+    const article = document.createElement('div');
+    const articleHeading = document.createElement('h2');
+    const articleDate = document.createElement('p');
+   // const passageDiv = document.createElement('div');
+    const passage1 = document.createElement ('p');
+    const passage2 = document.createElement ('p');
+    const passage3 = document.createElement ('p');
+    const spanButton = document.createElement('span');
+
+    //Setup structure of elements
+    article.appendChild(articleHeading);
+    article.appendChild(articleDate);
+    //article.appendChild(passageDiv);
+    article.appendChild(passage1);
+    article.appendChild(passage2);
+    article.appendChild(passage3);
+    article.appendChild(spanButton);
+
+
+    //add eventlistner
+    spanButton.addEventListener('click', (e)=> {
+      article.classList.toggle('article-open');
+    })
+
+    //set class name
+    //articleHeader.classList.add('title');
+    //passageDiv.classList.add('paragraph');
+    article.classList.add('article');
+    articleDate.classList.add('date');
+    spanButton.classList.add('expandButton');
+
+    //set content
+    articleHeading.textContent = post.title;
+    articleDate.textContent = post.date;
+    passage1.textContent = post.firstParagraph;
+    passage2.textContent = post.secondParagraph;
+    passage3.textContent = post.thirdParagraph;
+    spanButton.textContent = "Open";
+  
+
+  return article;
+  }
+  // data.forEach(info => {
+  //   articles.appendChild(addContent(info));
+ // });
+}
+);
+
